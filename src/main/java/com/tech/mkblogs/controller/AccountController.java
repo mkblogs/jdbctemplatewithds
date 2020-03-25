@@ -68,8 +68,8 @@ public class AccountController {
 		return ResponseEntity.ok().body(listAccount);
 	}
 	
-	@GetMapping("/account/searchone")
-	public ResponseEntity<List<Account>> searchone(@RequestParam("amount") String amount,
+	@GetMapping("/account/search")
+	public ResponseEntity<List<Account>> search(@RequestParam("amount") String amount,
 			@RequestParam("accountName") String accountName,
 			@RequestParam("accountType") String accountType) throws Exception{
 		log.info("| Request Time - Start - search() " + LocalTime.now());
@@ -81,19 +81,4 @@ public class AccountController {
 		log.info("| Request Time - End - search() " + LocalTime.now());
 		return ResponseEntity.ok().body(listAccount);
 	}
-	
-	@GetMapping("/account/searchtwo")
-	public ResponseEntity<List<Account>> searchtwo(@RequestParam("amount") String amount,
-			@RequestParam("accountName") String accountName,
-			@RequestParam("accountType") String accountType) throws Exception{
-		log.info("| Request Time - Start - search() " + LocalTime.now());
-		FilterDTO dto = new FilterDTO();
-		dto.setAccountName(accountName);
-		dto.setAccountType(accountType);
-		dto.setAmount(amount);
-		List<Account> listAccount = accountService.searchWithNamedTemplate(dto);
-		log.info("| Request Time - End - search() " + LocalTime.now());
-		return ResponseEntity.ok().body(listAccount);
-	}
-	
 }
